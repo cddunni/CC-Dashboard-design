@@ -34,7 +34,7 @@ const Sidebar = ({ className }: SidebarProps) => {
 
   return (
     <div
-      className={`${className} h-full pt-5 px-4 lg:overflow-hidden overflow-y-auto lg:pb-0 pb-6 hide-scrollbar lg:w-[230px]`}
+      className={`${className} h-full pt-5 px-4 lg:overflow-hidden overflow-y-auto lg:pb-0 pb-6 hide-scrollbar lg:w-[220px]`}
     >
       <Logo className="space-x-2 items-center pl-4 lg:flex hidden" />
 

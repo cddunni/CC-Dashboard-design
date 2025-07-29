@@ -14,7 +14,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
     <main className="flex h-screen overflow-hidden relative">
       <Sidebar className="border-black border-r-[1.5px] hidden lg:block w-[220px]"/>
 
-      <div className="w-full flex flex-col absolute lg:pl-[220px] h-full">
+      <div className="w-full flex flex-1 flex-col h-full">
         <Navbar toggleMobileMenu={toggleMobileMenu} isMobileSideBarOpen={mobileMenuOpen}/>
         <div className="flex-1 overflow-y-auto md:px-6 px-4 lg:pb-0 pb-6">{children}</div>
       </div>
