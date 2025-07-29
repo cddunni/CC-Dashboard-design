@@ -36,7 +36,7 @@ const Sidebar = ({ className }: SidebarProps) => {
     <div
       className={`${className} h-full pt-5 px-4 lg:overflow-hidden overflow-y-auto lg:pb-0 pb-6 hide-scrollbar`}
     >
-      <Logo className="flex space-x-2 items-center pl-4 lg:block hidden" />
+      <Logo className="space-x-2 items-center pl-4 lg:flex hidden" />
 
       <div className="lg:my-6">
         {mainMenu.map((menu) => (
