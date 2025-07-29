@@ -3,10 +3,7 @@ Table of Contents
 - Task
 - Setup and running instructions
 - Architecture and design decisions
-- Issues, limitations, or assumptions made.
-- Features/Component Breakdown
-- Bonus features
-- Project Link
+- Tech Stack
 
 
 # Task
@@ -28,12 +25,6 @@ npm install
 ### 3. Start the development server
 ```bash
 npm run dev
-```
-
-### 4. Run tests
-```bash
-npm run test
-✅ The app uses Vite for faster build and hot module replacement.
 ```
 
 ## 🏗 Architecture & Design Decisions
