@@ -21,7 +21,7 @@ const SummaryCard = ({
         <p className="text-2xl font-extrabold">{value}</p>
         <Icon icon={icon} className="text-[#7CCF00]" width={24} height={24} />
       </div>
-      <div className="flex justify-between mt-1 font-semibold text-extrasmall leading-3">
+      <div className="flex justify-between mt-1 font-bold text-extrasmall leading-3">
         <div>
           <p>Previous</p>
           <p className="">{previous}</p>
@@ -33,7 +33,7 @@ const SummaryCard = ({
               progress < 0 ? "text-brand-red" : "text-brand-green"
             }`}
           >
-            {progress}%
+            {progress > 0 ? '+' : ''}{progress}%
           </p>
         </div>
       </div>
