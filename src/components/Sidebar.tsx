@@ -9,7 +9,6 @@ const Sidebar = () => {
   const location = useLocation();
   const [openMenus, setOpenMenus] = useState<string[]>([]);
 
-  console.log(openMenus);
   const handleClick = (menu: MainMenu) => {
     if (menu.subMenu && menu.subMenu.length > 0) {
       setOpenMenus((prev) =>
