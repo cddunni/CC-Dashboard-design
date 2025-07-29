@@ -1,5 +1,4 @@
-// components/charts/LineChart.tsx
-import { Line } from 'react-chartjs-2';
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,8 +9,9 @@ import {
   Tooltip,
   Legend,
   Filler,
-} from 'chart.js';
-import { FC } from 'react';
+  ChartOptions
+} from "chart.js";
+import { FC } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -26,74 +26,55 @@ ChartJS.register(
 
 interface LineChartProps {
   labels: string[];
-  datasets: {
+  datasets?: {
     label: string;
     data: number[];
     backgroundColor?: string;
+    borderColor?: string;
   }[];
-};
+  options: ChartOptions<"line">;
+}
 
-const LineChart: FC<LineChartProps> = ({ labels, datasets }) => {
-  const data = {
-    labels,
-    datasets: datasets.map((data, index) => ({
-      ...data,
-      yAxisID: index === 0 ? 'y1' : 'y2',
-      fill: false,
-      tension: 0.3,
+const LineChart: FC<LineChartProps> = ({ labels, datasets, options }) => {
+  const defaultDatasets = [
+    {
+      label: 'default',
+      data: [10, 20, 30, 40],
+      backgroundColor: "#fff9b320",
+      borderColor: "#23CE6B",
+      //borderWidth: 2,
+      borderCapStyle: "round",
+      borderDashOffset: [10],
+      //fill: true,
+      lineTension: "0.4",
+      pointBackgroundColor: "#23CE6B",
       pointRadius: 0,
-    })),
-  };
+      pointHitRadius: 10,
+    },
+  ];
 
-  const options = {
+  const defaultChartOptions: ChartOptions<"line"> = {
+    maintainAspectRatio: false,
     responsive: true,
     animation: { duration: 1000 },
     plugins: {
       legend: {
-        display: false
+        display: false,
       },
     },
     scales: {
-      x: {
-        grid: {
-          display: false, // removes horizontal grid lines
-        },
-      },
-      y1: {
-        type: 'linear' as const,
-        position: 'left' as const,
+      y: {
         beginAtZero: true,
-        min: 0, 
-        max: 800,
-        ticks: {
-          stepSize: 100,
-        },
-        title: {
-          display: false,
-          text: 'acquisition',
-        },
-      },
-      y2: {
-        type: 'linear' as const,
-        position: 'right' as const,
-        beginAtZero: true,
-        min: 0,
-        max: 6000,
-        ticks: {
-          stepSize: 1000,
-        },
-        grid: {
-          drawOnChartArea: false,
-        },
-        title: {
-          display: false,
-          text: 'cost ($)',
-        },
       },
     },
   };
 
-  return <Line data={data} options={options} />;
+  const data = {
+    labels,
+    datasets: datasets ?? defaultDatasets
+  };
+
+  return <Line data={data} options={options ?? defaultChartOptions} />;
 };
 
 export default LineChart;

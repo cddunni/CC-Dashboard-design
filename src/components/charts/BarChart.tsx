@@ -40,6 +40,9 @@ const options = {
   scales: {
     x: {
       stacked: true,
+      grid: {
+        display: false,
+      },
     },
     y: {
       stacked: true,
@@ -47,6 +50,9 @@ const options = {
       max: 200,
       ticks: {
         stepSize: 20,
+      },
+      grid: {
+        display: false,
       },
     },
   },

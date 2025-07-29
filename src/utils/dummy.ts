@@ -101,4 +101,6 @@ export const notificationsData = {
   translator_count: null,
   inbox_count: 4,
   alert_count: 1,
-}
+};
+
+

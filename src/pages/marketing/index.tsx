@@ -7,12 +7,26 @@ import {
   acquisitionVersusCostData,
   budgetByPlatform,
 } from "../../utils/dummy";
+import {
+  acquisitionVersusCostYScale
+} from "../../utils/constants";
 import { Icon } from "@iconify/react";
 import { formatCurrency } from "../../utils/functions/generators";
 import { ProgressBar } from "../../components";
 
 const Marketing = () => {
   const [currentDateFilter, setCurrentDateFilter] = useState(7);
+
+  const {labels ,datasets} = acquisitionVersusCostData
+
+  const lineChartData = datasets.map((data, index) => ({
+    ...data,
+    yAxisID: index === 0 ? "y1" : "y2",
+    fill: false,
+    tension: 0.3,
+    pointRadius: 0,
+  }))
+
   return (
     <>
       <div className="flex justify-between items-center py-4">
@@ -56,8 +70,9 @@ const Marketing = () => {
         <div className="bg-white border-[1.5px] border-black rounded p-4 text-black font-medium">
           <p className="font-semibold mb-2">Acquisition vs Cost</p>
           <LineChart
-            labels={acquisitionVersusCostData.labels}
-            datasets={acquisitionVersusCostData.datasets}
+            labels={labels}
+            datasets={lineChartData}
+            options={acquisitionVersusCostYScale}
           />
         </div>
         <div className="bg-white border-[1.5px] border-black rounded p-4">
