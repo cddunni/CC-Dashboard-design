@@ -11,11 +11,9 @@ import { acquisitionVersusCostYScale } from "../../utils/constants";
 import { Icon } from "@iconify/react";
 import { formatCurrency } from "../../utils/functions/generators";
 import { ProgressBar } from "../../components";
-import MainLayout from "../../layouts/MainLayout";
 
 const Marketing = () => {
   const [currentDateFilter, setCurrentDateFilter] = useState(7);
-  const [searchValue, setSearchValue] = useState("");
   const { labels, datasets } = acquisitionVersusCostData;
 
   const lineChartData = datasets.map((data, index) => ({
@@ -26,12 +24,9 @@ const Marketing = () => {
     tension: 0.3,
     pointRadius: 0,
   }));
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
 
   return (
-    <MainLayout searchFunc={handleSearch} searchValue={searchValue}>
+    <>
       <div className="flex justify-between items-center py-4">
         <p className="text-lg font-bold">Marketing</p>
         <DateFilter
@@ -100,7 +95,7 @@ const Marketing = () => {
           </div>
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 };
 
