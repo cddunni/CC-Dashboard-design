@@ -91,7 +91,7 @@ const Sidebar = ({ className }: SidebarProps) => {
         </button>
       </div>
 
-      <Notifications data={notificationsData} className="flex space-x-1 mt-6" />
+      <Notifications data={notificationsData} className="lg:hidden flex space-x-1 mt-6" />
     </div>
   );
 };

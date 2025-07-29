@@ -16,7 +16,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
       <div className="w-full flex flex-col absolute lg:pl-[220px] h-full">
         <Navbar toggleMobileMenu={toggleMobileMenu} isMobileSideBarOpen={mobileMenuOpen}/>
-        <div className="flex-1 lg:overflow-hidden overflow-y-auto md:px-6 px-4 lg:pb-0 pb-6">{children}</div>
+        <div className="flex-1 overflow-y-auto md:px-6 px-4 lg:pb-0 pb-6">{children}</div>
       </div>
     </main>
   );
