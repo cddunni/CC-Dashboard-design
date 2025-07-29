@@ -11,7 +11,7 @@ const DateFilter = ({ handleDateFilter, selectedFilter }: DateFilterProps) => {
       {dateFilters.map(({ label, value }) => (
         <button
           key={`date-filter-${value}`}
-          className={`${selectedFilter === value ? 'text-brand-green' : 'text-black'} border-r border-black px-4 py-1.5 font-medium text-sm`}
+          className={`${selectedFilter === value ? 'text-brand-green' : 'text-black'} border-r border-black px-4 py-1.5 font-medium md:text-sm text-xs`}
           onClick={() => {
             handleDateFilter(value);
           }}

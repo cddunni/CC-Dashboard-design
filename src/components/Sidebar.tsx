@@ -3,8 +3,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { mainMenu } from "../utils/data/navigation";
 import { MainMenu } from "../utils/types";
+import Logo from "./Logo";
+import Notifications from "./Notifications";
+import { notificationsData } from "../utils/dummy";
 
-const Sidebar = () => {
+interface SidebarProps {
+  className: string;
+}
+
+const Sidebar = ({ className }: SidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [openMenus, setOpenMenus] = useState<string[]>([]);
@@ -26,13 +33,12 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-[220px] pt-5 px-4 border-r-[1.5px] border-black">
-      <div className="flex space-x-2 items-center pl-4">
-        <p className="logo">B</p>
-        <p className="text-2xl font-extrabold">rutalism</p>
-      </div>
+    <div
+      className={`${className} h-full pt-5 px-4 lg:overflow-hidden overflow-y-auto lg:pb-0 pb-6 hide-scrollbar`}
+    >
+      <Logo className="flex space-x-2 items-center pl-4 lg:block hidden" />
 
-      <div className="my-6">
+      <div className="lg:my-6">
         {mainMenu.map((menu) => (
           <div key={menu.id} className="">
             <div
@@ -45,7 +51,13 @@ const Sidebar = () => {
                 <Icon icon={menu.icon} width="14" height="14" />
                 <span className="font-semibold text-sm">{menu.label}</span>
               </div>
-              {menu.subMenu && !!menu?.subMenu.length && <Icon icon='iconamoon:arrow-down-2-thin' width="20" height="20"/>}
+              {menu.subMenu && !!menu?.subMenu.length && (
+                <Icon
+                  icon="iconamoon:arrow-down-2-thin"
+                  width="20"
+                  height="20"
+                />
+              )}
             </div>
 
             {/* Submenu options */}
@@ -78,6 +90,8 @@ const Sidebar = () => {
           <span>Upgrade Now</span>
         </button>
       </div>
+
+      <Notifications data={notificationsData} className="flex space-x-1 mt-6" />
     </div>
   );
 };

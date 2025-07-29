@@ -1,6 +1,6 @@
 import type { RouteObject } from "react-router-dom";
 import { createBrowserRouter, Outlet } from "react-router-dom";
-import MainLayout from "./layouts/main-layout";
+import MainLayout from "./layouts/MainLayout";
 import Marketing from "./pages/marketing";
 
 export type PageProps = {

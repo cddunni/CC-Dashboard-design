@@ -14,7 +14,7 @@ import { ProgressBar } from "../../components";
 const Marketing = () => {
   const [currentDateFilter, setCurrentDateFilter] = useState(7);
   return (
-    <div className="px-6">
+    <>
       <div className="flex justify-between items-center py-4">
         <p className="text-lg font-bold">Marketing</p>
         <DateFilter
@@ -22,8 +22,8 @@ const Marketing = () => {
           selectedFilter={currentDateFilter}
         />
       </div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-4">
           <SummaryCard
             title="Total Spend"
             value="$8,765"
@@ -75,14 +75,14 @@ const Marketing = () => {
                     <p>Remaining {formatCurrency(budget.remaining)}</p>
                     <p>{budget.percentage}%</p>
                   </div>
-                  <ProgressBar percentage={budget.percentage}/>
+                  <ProgressBar percentage={budget.percentage} />
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

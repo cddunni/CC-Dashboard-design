@@ -1,55 +1,72 @@
 import SearchInput from "./SearchInput";
+import Logo from "./Logo";
 import { Icon } from "@iconify/react";
-import Avatar from "../assets/dashboard-avatar.jpeg";
+import Sidebar from "./Sidebar";
+import Notifications from "./Notifications";
+import { notificationsData } from "../utils/dummy";
+import { AnimatePresence, motion } from "framer-motion";
 
-const Navbar = () => {
-  const notifications = [
-    {
-      name: "settings",
-      icon: "ooui:settings",
-      count: null,
-    },
-    {
-      name: "translator",
-      icon: "cil:language",
-      count: null,
-    },
-    {
-      name: "inbox",
-      icon: "bi:envelope-fill",
-      count: 4,
-    },
-    {
-      name: "notifications",
-      icon: "clarity:bell-solid",
-      count: 1,
-    },
-  ];
+interface Navbar {
+  toggleMobileMenu: () => void;
+  isMobileSideBarOpen: boolean;
+}
+
+const Navbar = ({ toggleMobileMenu, isMobileSideBarOpen }: Navbar) => {
   return (
-    <header className="h-[70px] px-6 py-3 border-b-[1.5px] border-black flex justify-between">
-      <SearchInput
-        id="search"
-        name="search"
-        placeholder="Search..."
-        onChange={() => {}}
-      />
-      <div className="flex space-x-4">
-        {notifications.map((item) => (
-          <div className="relative">
-            <button className="rounded-full w-10 h-10 border border-black flex items-center justify-center ">
-              <Icon icon={item.icon} width={18} height={18} />
-            </button>
-            {item.count && (
-              <div className="w-5 h-5 rounded-full bg-[#FEA4A5] text-[10px] font-semibold flex items-center justify-center absolute bottom-7 left-6">
-                {item.count}
-              </div>
-            )}
-          </div>
-        ))}
-        <div className="w-10 h-10 border border-black rounded-full overflow-hidden">
-          <img src={Avatar} alt="man_head_down" className="w-full h-full object-cover" />
-        </div>
+    <header
+      className={`${
+        isMobileSideBarOpen ? "" : "border-b-[1.5px]"
+      } h-[70px] md:px-6 px-4 py-3 border-black flex justify-between`}
+    >
+      <Logo className="flex space-x-2 items-center lg:hidden" />
+
+      <div className="md:block hidden">
+        <SearchInput
+          id="search"
+          name="search"
+          placeholder="Search..."
+          onChange={() => {}}
+        />
       </div>
+      <Notifications
+        data={notificationsData}
+        className="lg:flex space-x-4 hidden"
+      />
+
+      <button className="lg:hidden block p-1" onClick={toggleMobileMenu}>
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={isMobileSideBarOpen ? "close" : "menu"}
+            initial={{ rotate: 90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: -90, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Icon
+              icon={
+                isMobileSideBarOpen
+                  ? "icon-park-outline:close"
+                  : "hugeicons:menu-02"
+              }
+              width={36}
+              height={36}
+            />
+          </motion.div>
+        </AnimatePresence>
+      </button>
+
+      {isMobileSideBarOpen && (
+        <AnimatePresence>
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "0", transition: { duration: 0.5 } }}
+            exit={{ x: "-100%" }}
+            className="fixed inset-0 z-40 bg-opacity-50 lg:hidden h-[calc(100%-70px)] top-[70px]"
+          >
+            <Sidebar className="w-64 h-full bg-white shadow-lg" />
+          </motion.div>
+        </AnimatePresence>
+      )}
     </header>
   );
 };
