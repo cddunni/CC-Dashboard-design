@@ -14,9 +14,7 @@ interface Navbar {
 const Navbar = ({ toggleMobileMenu, isMobileSideBarOpen }: Navbar) => {
   return (
     <header
-      className={`${
-        isMobileSideBarOpen ? "" : "border-b-[1.5px]"
-      } h-[70px] md:px-6 px-4 py-3 border-black flex justify-between`}
+      className="border-b-[1.5px] h-[70px] md:px-6 px-4 py-3 border-black flex justify-between"
     >
       <Logo className="flex space-x-2 items-center lg:hidden" />
 
@@ -28,6 +26,7 @@ const Navbar = ({ toggleMobileMenu, isMobileSideBarOpen }: Navbar) => {
           onChange={() => {}}
         />
       </div>
+
       <Notifications
         data={notificationsData}
         className="lg:flex space-x-4 hidden"

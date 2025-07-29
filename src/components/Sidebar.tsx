@@ -42,7 +42,7 @@ const Sidebar = ({ className }: SidebarProps) => {
         {mainMenu.map((menu) => (
           <div key={menu.id} className="">
             <div
-              className={`flex justify-between items-center py-2 cursor-pointer px-4 rounded mb-1 ${
+              className={`flex justify-between items-center py-2 cursor-pointer px-4 hover:bg-white rounded mb-1 ${
                 isActive(menu) ? "border bg-white" : ""
               }`}
               onClick={() => handleClick(menu)}
@@ -66,13 +66,13 @@ const Sidebar = ({ className }: SidebarProps) => {
               openMenus.includes(menu.id) && (
                 <div className="ml-6 space-y-1">
                   {menu.subMenu.map((sub) => (
-                    <div
+                    <button
                       key={sub.id}
                       className="cursor-pointer text-xs flex items-center gap-2 py-0.5"
                       onClick={() => sub.url && navigate(sub.url)}
                     >
                       <span>{sub.label}</span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}

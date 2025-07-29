@@ -25,7 +25,7 @@ const pages: RouteObject[] = [
         element: <Marketing />,
       },
       {
-        path: "/analytcs",
+        path: "/analytics",
         element: <>Analytics</>,
       },
     ],
